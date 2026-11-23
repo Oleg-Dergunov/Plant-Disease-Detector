@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Result</h1>
+
+    {% if result.status == "low_confidence" %}
+        <p class="notice">We're not sure about this photo. Try a clearer photo of a single leaf.</p>
+    {% elif result.status == "other" %}
+        <p class="notice">This doesn't look like one of the 14 supported crops.</p>
+    {% else %}
+        <p><strong>Crop:</strong> {{ crop }}</p>
+
+        {% if result.status == "recognition_only" %}
+            <p class="notice">Disease detection isn't available for {{ crop }}. Only the crop is recognised.</p>
+        {% else %}
+            <p><strong>Diagnosis:</strong> {{ disease }}</p>
+        {% endif %}
+
+        <p><strong>Confidence:</strong> {{ (result.confidence * 100) | round | int }}%</p>
+    {% endif %}
+
+    <a href="{{ url_for('main.index') }}">Check another photo</a>
+{% endblock %}

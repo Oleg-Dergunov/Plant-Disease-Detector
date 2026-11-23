@@ -3,4 +3,13 @@
 {% block content %}
     <h1>Check your plant's health</h1>
     <p>Upload a photo of a leaf to find out the crop and, where possible, its disease.</p>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('main.upload') }}" method="post" enctype="multipart/form-data">
+        <input type="file" name="photo" accept="image/jpeg,image/png" required>
+        <button type="submit">Check photo</button>
+    </form>
 {% endblock %}
