@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Secrets (passwords, API keys)
+.env
+
+# Database files
+instance/
+*.db
+
+# Dataset and model files (too big for Git)
+data/
+models/*.pt
+models/*.pth
